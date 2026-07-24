@@ -47,6 +47,9 @@ Rules:
 - Every question must be answerable directly from the excerpts below.
 - Provide exactly 4 options per question, only one correct.
 - Include the page number the answer comes from.
+- Include a short "topic" label (2-4 words) for what concept the question tests, \
+e.g. "Binary Search", "Time Complexity", "Recursion Base Case" -- this is used \
+to group results and show the student their strong/weak areas.
 - Do not invent facts not present in the excerpts.
 
 Respond with ONLY valid JSON (no markdown fences, no preamble), in this exact shape:
@@ -57,6 +60,7 @@ Respond with ONLY valid JSON (no markdown fences, no preamble), in this exact sh
       "options": ["...", "...", "...", "..."],
       "correct_answer_index": 0,
       "page": 1,
+      "topic": "...",
       "explanation": "brief reason why this is correct, grounded in the excerpt"
     }}
   ]
