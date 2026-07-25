@@ -46,6 +46,7 @@ _documents: dict[str, str] = {}
 class QueryRequest(BaseModel):
     question: str
     document_id: str | None = None  # omit to search across all documents
+    use_general_knowledge: bool = False  # True = allow answers beyond the document
 
 
 @app.get("/health")
@@ -97,7 +98,7 @@ def query_document(req: QueryRequest):
         raise HTTPException(400, "Question cannot be empty.")
 
     hits = vector_query(req.question, document_id=req.document_id)
-    result = answer_question(req.question, hits)
+    result = answer_question(req.question, hits, use_general_knowledge=req.use_general_knowledge)
     return result
 
 
